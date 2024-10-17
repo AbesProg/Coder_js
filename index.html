@@ -1,14 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Bodoni&display=swap" rel="stylesheet">
+
     <title>Document</title>
+
 </head>
+
 <body>
 
-    <button onclick="pasar_notas()">Ingresar Notas</button>
+    <form id="userDatos">
+        <label>Nombre alumno</label>
+        <input type="text" placeholder="ingrese el nombre" />
     
-    <script src= "main.js"></script>
+        <label>Nota matemática</label>
+        <input type="number" name="matematica" placeholder="nota" />
+    
+        <label>Nota inglés</label>
+        <input type="number" name="ingles" placeholder="nota" />
+    
+        <label>Nota biología</label>
+        <input type="number" name="biologia" placeholder="nota" />
+    
+        <label>Nota computación</label>
+        <input type="number" name="computacion" placeholder="nota" />
+    
+        <label>Nota historia</label>
+        <input type="number" name="historia" placeholder="nota" />
+    
+        <button type="submit">Guardar</button>
+    </form>
+
+    <div id="tarjetasContainer"></div>
+
+    <script src="js/tarjetas.js"></script>
+    <script src="js/main.js"></script>
 </body>
+
 </html>
