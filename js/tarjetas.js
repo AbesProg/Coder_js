@@ -1,36 +1,5 @@
-
-let alumnos = [];
-
-let form = document.querySelector("#userDatos");
-
-form.addEventListener("submit", (e) => {
-    e.preventDefault();
-
-    const nombreAlumno = form.querySelector('input[type="text"]').value;
-
-    const notas = {
-        matematica: Number(form.querySelector('input[name="matematica"]').value),
-        ingles: Number(form.querySelector('input[name="ingles"]').value),
-        biologia: Number(form.querySelector('input[name="biologia"]').value),
-        computacion: Number(form.querySelector('input[name="computacion"]').value),
-        historia: Number(form.querySelector('input[name="historia"]').value)
-    };
-
-    let alumno = {
-        nombre: nombreAlumno,
-        notas: notas
-    };
-
-    alumnos.push(alumno);
-
-    crearTarjeta(alumno);
-
-    form.reset();
-});
-
 function crearTarjeta(alumno) {
     const tarjetasContainer = document.getElementById('tarjetasContainer');
-
     const tarjeta = document.createElement('div');
     tarjeta.classList.add('tarjeta');
 
@@ -41,10 +10,9 @@ function crearTarjeta(alumno) {
 
     tarjeta.innerHTML = `
         <h3>${alumno.nombre}</h3>
+        <img src="${alumno.pokemon.imagen}" alt="${alumno.pokemon.nombre}" />
         <p><br>${notasString}</p>
     `;
 
     tarjetasContainer.appendChild(tarjeta);
 }
-
-

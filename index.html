@@ -6,37 +6,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Libre+Bodoni&display=swap" rel="stylesheet">
-
-    <title>Document</title>
-
+    <title> Pasar Notas </title>
 </head>
 
 <body>
-
     <form id="userDatos">
         <label>Nombre alumno</label>
-        <input type="text" placeholder="ingrese el nombre" />
-    
+        <input type="text"  pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ ]+" placeholder="ingrese el nombre" />
+
         <label>Nota matemática</label>
-        <input type="number" name="matematica" placeholder="nota" />
-    
+        <input type="number" name="matematica" min="1" max="10" placeholder="nota" />
+
         <label>Nota inglés</label>
-        <input type="number" name="ingles" placeholder="nota" />
-    
+        <input type="number" name="ingles" min="1" max="10" placeholder="nota" />
+
         <label>Nota biología</label>
-        <input type="number" name="biologia" placeholder="nota" />
-    
+        <input type="number" name="biologia" min="1" max="10" placeholder="nota" />
+
         <label>Nota computación</label>
-        <input type="number" name="computacion" placeholder="nota" />
-    
+        <input type="number" name="computacion" min="1" max="10" placeholder="nota" />
+
         <label>Nota historia</label>
-        <input type="number" name="historia" placeholder="nota" />
-    
+        <input type="number" name="historia" min="1" max="10" placeholder="nota" />
+
         <button type="submit">Guardar</button>
+
+        <div id="errorContainer" style="color: red;"></div>
     </form>
 
     <div id="tarjetasContainer"></div>
-
     <script src="js/tarjetas.js"></script>
     <script src="js/main.js"></script>
 </body>

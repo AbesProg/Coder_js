@@ -1,39 +1,55 @@
+let alumnos = JSON.parse(localStorage.getItem('alumnos')) || [];
+const pokemones = [];
+
+async function obtenerPokemones() {
+    for (let i = 1; i <= 20; i++) {
+        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`);
+        const data = await response.json();
+        pokemones.push({
+            nombre: data.name,
+            imagen: data.sprites.front_default
+        });
+    }
+}
+
+obtenerPokemones().then(() => {
+    cargarTarjetas();
+});
 
 let form = document.querySelector("#userDatos");
 
 form.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    let nombreAlumno = form.querySelector('input[type="text"]').value;
-    let notas = [];
-    
-    let notaInputs = form.querySelectorAll('input[type="number"]');
-    notaInputs.forEach(input => {
-        notas.push(Number(input.value));
-    });
+    const nombreAlumno = form.querySelector('input[type="text"]').value;
+
+    const notas = {
+        matematica: Number(form.querySelector('input[name="matematica"]').value),
+        ingles: Number(form.querySelector('input[name="ingles"]').value),
+        biologia: Number(form.querySelector('input[name="biologia"]').value),
+        computacion: Number(form.querySelector('input[name="computacion"]').value),
+        historia: Number(form.querySelector('input[name="historia"]').value)
+    };
+
+    if (!nombreAlumno || Object.values(notas).some(nota => isNaN(nota) || nota < 1 || nota > 10)) {
+        document.getElementById('errorContainer').innerText = "Por favor, complete todos los campos con valores válidos.";
+        return;
+    }
 
     let alumno = {
         nombre: nombreAlumno,
-        materias: {
-            matematica: notas[0],
-            ingles: notas[1],
-            biologia: notas[2],
-            computacion: notas[3],
-            historia: notas[4]
-        }
+        notas: notas,
+        pokemon: pokemones[Math.floor(Math.random() * pokemones.length)]
     };
 
     alumnos.push(alumno);
-    console.log(alumnos);
     localStorage.setItem('alumnos', JSON.stringify(alumnos));
+    crearTarjeta(alumno);
     form.reset();
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-    const alumnosGuardados = localStorage.getItem('alumnos');
-    if (alumnosGuardados) {
-        alumnos = JSON.parse(alumnosGuardados);
-        console.log(alumnos);
-    }
-});
-
+function cargarTarjetas() {
+    alumnos.forEach(alumno => {
+        crearTarjeta(alumno);
+    });
+}
