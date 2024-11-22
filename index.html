@@ -5,34 +5,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link href="https://fonts.googleapis.com/css2?family=Libre+Bodoni&display=swap" rel="stylesheet">
     <title> Pasar Notas </title>
 </head>
 
 <body>
     <form id="userDatos">
-        <label>Nombre alumno</label>
-        <input type="text"  pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ ]+" placeholder="ingrese el nombre" />
+        <label>Nombre</label>
+        <input type="text" name="nombre"  pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ ]+" placeholder="ingrese el nombre " minlength="4" required />
+
+        <label for="apellido">Apellido</label>
+        <input type="text" id="apellido" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ ]+" placeholder="Ingrese el apellido" minlength="4" required/>
 
         <label>Nota matemática</label>
-        <input type="number" name="matematica" min="1" max="10" placeholder="nota" />
+        <input type="number" name="matematica" min="1" max="10" placeholder="ingrese la nota" />
 
         <label>Nota inglés</label>
-        <input type="number" name="ingles" min="1" max="10" placeholder="nota" />
+        <input type="number" name="ingles" min="1" max="10" placeholder="ingrese la nota" />
 
         <label>Nota biología</label>
-        <input type="number" name="biologia" min="1" max="10" placeholder="nota" />
+        <input type="number" name="biologia" min="1" max="10" placeholder="ingrese la nota" />
 
         <label>Nota computación</label>
-        <input type="number" name="computacion" min="1" max="10" placeholder="nota" />
+        <input type="number" name="computacion" min="1" max="10" placeholder="ingrese la nota" />
 
         <label>Nota historia</label>
-        <input type="number" name="historia" min="1" max="10" placeholder="nota" />
+        <input type="number" name="historia" min="1" max="10" placeholder="ingrese la nota" />
 
         <button type="submit">Guardar</button>
 
         <div id="errorContainer" style="color: red;"></div>
     </form>
+
+    <select id="ordenarPor">
+        <option value="nombre">Ordenar por Nombre</option>
+        <option value="promedio">Ordenar por Promedio</option>
+        <option value="mejorNota">Ordenar por Mejor Nota</option>
+        <option value="peorNota">Ordenar por Peor Nota</option>
+    </select>
+
+    <button id="ordenarButton">Ordenar</button> 
+
+    <button id="borrarAlumnos" style="background-color: rgb(92, 34, 92);">Borrar Alumnos</button>
+
+    <input type="text" id="buscador" placeholder="Buscar alumno por nombre" />
+
 
     <div id="tarjetasContainer"></div>
     <script src="js/tarjetas.js"></script>
